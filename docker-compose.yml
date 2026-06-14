@@ -75,6 +75,7 @@ services:
     restart: unless-stopped
     environment:
       VITE_API_URL: http://localhost:8787
+      API_PROXY_URL: http://api:8787
     ports:
       - "5173:5173"
     volumes:

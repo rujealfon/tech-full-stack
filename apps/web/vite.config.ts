@@ -24,7 +24,8 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      "/api": "http://localhost:8787",
+      // eslint-disable-next-line node/no-process-env
+      "/api": process.env.API_PROXY_URL ?? "http://localhost:8787",
     },
   },
 });
