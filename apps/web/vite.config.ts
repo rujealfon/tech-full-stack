@@ -1,5 +1,4 @@
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
-import react from "@vitejs/plugin-react";
+import vue from "@vitejs/plugin-vue";
 import path from "path";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -12,6 +11,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      "@/web": path.resolve(__dirname, "./src"),
       "@tech-full-stack/api-client": path.resolve(
         __dirname,
         "../../packages/api-client/src/index.ts",
@@ -20,16 +20,7 @@ export default defineConfig({
   },
   plugins: [
     tsconfigPaths(),
-    TanStackRouterVite({
-      routeFilePrefix: "~",
-      routeTreeFileHeader: [
-        "/* eslint-disable eslint-comments/no-unlimited-disable */",
-        "/* eslint-disable */",
-      ],
-      generatedRouteTree: "./src/route-tree.gen.ts",
-
-    }),
-    react(),
+    vue(),
   ],
   server: {
     proxy: {

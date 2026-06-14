@@ -1,6 +1,6 @@
 import type { insertTasksSchema, patchTasksSchema } from "@tech-full-stack/api/schema";
 
-import { queryOptions } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/vue-query";
 
 import apiClient from "./api-client";
 import formatApiError from "./format-api-error";
