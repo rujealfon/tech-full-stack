@@ -1,6 +1,6 @@
-# Hono + React / Vite + PostgreSQL + pnpm workspaces monorepo
+# Hono + Vue / Vite + PostgreSQL + pnpm workspaces monorepo
 
-A monorepo setup using pnpm workspaces with a Hono API and React / Vite client backed by a local PostgreSQL database.
+A monorepo setup using pnpm workspaces with a Hono API and Vue / Vite client backed by a local PostgreSQL database.
 
 ## Features
 
@@ -16,17 +16,15 @@ A monorepo setup using pnpm workspaces with a Hono API and React / Vite client b
 **api**
 - [Hono](https://hono.dev/) on Node.js via `@hono/node-server`
 - Hono Zod OpenAPI + Scalar API reference
-- Auth.js (GitHub OAuth)
 - Drizzle ORM + drizzle-zod
 - PostgreSQL (`pg`)
 - stoker
 
 **web**
-- React
+- Vue 3
 - Vite
-- TanStack Router
-- TanStack Query
-- React Hook Form
+- Vue Router
+- VeeValidate + Zod
 
 **dev tooling**
 - TypeScript
@@ -39,7 +37,7 @@ A monorepo setup using pnpm workspaces with a Hono API and React / Vite client b
 .
 ├── apps/
 │   ├── api/          # Hono REST API (Node.js)
-│   └── web/          # React / Vite frontend
+│   └── web/          # Vue / Vite frontend
 └── packages/
     ├── api-client/   # Type-safe Hono RPC client
     └── eslint-config/ # Shared ESLint config
@@ -71,17 +69,14 @@ Edit `apps/api/.env` and fill in your values:
 
 ```env
 DATABASE_URL=postgresql://postgres:password@localhost:5432/tech_full_stack
-AUTH_SECRET=your-secret-here
-AUTH_URL=http://localhost:5173/api/auth
-GITHUB_CLIENT_ID=your-github-client-id
-GITHUB_CLIENT_SECRET=your-github-client-secret
+PORT=8787
 ```
 
 ### 3. Run DB migrations
 
 ```sh
-pnpm --filter @tech-full-stack/api db:generate
-pnpm --filter @tech-full-stack/api db:migrate
+pnpm db:generate
+pnpm db:migrate
 ```
 
 ### 4. Start apps
@@ -98,9 +93,9 @@ All requests to `/api` are proxied to the Hono server running on [http://localho
 
 | Command | Description |
 | --- | --- |
-| `pnpm --filter @tech-full-stack/api db:generate` | Generate migrations from schema changes |
-| `pnpm --filter @tech-full-stack/api db:migrate` | Apply pending migrations |
-| `pnpm --filter @tech-full-stack/api db:studio` | Open Drizzle Studio |
+| `pnpm db:generate` | Generate migrations from schema changes |
+| `pnpm db:migrate` | Apply pending migrations |
+| `pnpm db:studio` | Open Drizzle Studio |
 
 ## Tasks
 

@@ -1,15 +1,14 @@
-# @tasks-app/web
+# @tech-full-stack/web
 
-React + Vite frontend for the tasks app. During development, API requests to `/api` are proxied to the Hono server running on `http://localhost:8787`.
+Vue 3 + Vite frontend for the tasks app. During development, API requests to `/api` are proxied to the Hono server running on `http://localhost:8787`.
 
 ## Tech Stack
 
-- [React](https://react.dev/)
+- [Vue 3](https://vuejs.org/)
 - [Vite](https://vitejs.dev/)
-- [TanStack Router](https://tanstack.com/router) — file-based routing
-- [TanStack Query](https://tanstack.com/query) — data fetching
-- [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) — form validation
-- [@tasks-app/api-client](../../packages/api-client/) — type-safe Hono RPC client
+- [Vue Router](https://router.vuejs.org/) — client-side routing
+- [VeeValidate](https://vee-validate.logaretm.com/) + [Zod](https://zod.dev/) — form validation
+- [@tech-full-stack/api-client](../../packages/api-client/) — type-safe Hono RPC client
 
 ## Scripts
 
@@ -18,7 +17,7 @@ React + Vite frontend for the tasks app. During development, API requests to `/a
 | `pnpm dev` | Start Vite dev server |
 | `pnpm build` | Build for production (outputs to `../api/public`) |
 | `pnpm lint` | Lint with ESLint |
-| `pnpm typecheck` | Type-check with TypeScript |
+| `pnpm typecheck` | Type-check with `vue-tsc` |
 
 ## Development
 
