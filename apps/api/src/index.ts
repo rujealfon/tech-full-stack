@@ -1,10 +1,10 @@
 import { serve } from "@hono/node-server";
-import "dotenv/config";
-
 import app from "./app";
 
-const port = Number(process.env.PORT) || 8787;
+import { config } from "./config";
+import "dotenv/config";
 
-serve({ fetch: app.fetch, port }, (info) => {
+serve({ fetch: app.fetch, port: config.PORT }, (info) => {
+  // eslint-disable-next-line no-console
   console.log(`Server running at http://localhost:${info.port}`);
 });

@@ -3,8 +3,9 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers";
 import { createErrorSchema, IdParamsSchema } from "stoker/openapi/schemas";
 
-import { insertTasksSchema, patchTasksSchema, selectTasksSchema } from "@/api/db/schema";
 import { notFoundSchema } from "@/api/lib/constants";
+
+import { insertTasksSchema, patchTasksSchema, selectTasksSchema } from "./tasks.schema";
 
 const tags = ["Tasks"];
 
@@ -23,15 +24,15 @@ export const list = createRoute({
 export const create = createRoute({
   path: "/tasks",
   method: "post",
+  tags,
   request: {
     body: jsonContentRequired(
       insertTasksSchema,
       "The task to create",
     ),
   },
-  tags,
   responses: {
-    [HttpStatusCodes.OK]: jsonContent(
+    [HttpStatusCodes.CREATED]: jsonContent(
       selectTasksSchema,
       "The created task",
     ),
@@ -45,10 +46,10 @@ export const create = createRoute({
 export const getOne = createRoute({
   path: "/tasks/{id}",
   method: "get",
+  tags,
   request: {
     params: IdParamsSchema,
   },
-  tags,
   responses: {
     [HttpStatusCodes.OK]: jsonContent(
       selectTasksSchema,
@@ -68,6 +69,7 @@ export const getOne = createRoute({
 export const patch = createRoute({
   path: "/tasks/{id}",
   method: "patch",
+  tags,
   request: {
     params: IdParamsSchema,
     body: jsonContentRequired(
@@ -75,7 +77,6 @@ export const patch = createRoute({
       "The task updates",
     ),
   },
-  tags,
   responses: {
     [HttpStatusCodes.OK]: jsonContent(
       selectTasksSchema,
@@ -96,10 +97,10 @@ export const patch = createRoute({
 export const remove = createRoute({
   path: "/tasks/{id}",
   method: "delete",
+  tags,
   request: {
     params: IdParamsSchema,
   },
-  tags,
   responses: {
     [HttpStatusCodes.NO_CONTENT]: {
       description: "Task deleted",

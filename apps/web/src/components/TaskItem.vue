@@ -1,3 +1,10 @@
+<script setup lang="ts">
+// Dates arrive as ISO strings over JSON, not Date objects
+type Task = { id: number; name: string; done: boolean; createdAt: string; updatedAt: string };
+
+defineProps<{ task: Task }>();
+</script>
+
 <template>
   <article>
     <h3 :style="{ textDecoration: task.done ? 'line-through' : undefined }">
@@ -10,9 +17,3 @@
     </div>
   </article>
 </template>
-
-<script setup lang="ts">
-import type { selectTasksSchema } from "@tech-full-stack/api/schema";
-
-defineProps<{ task: selectTasksSchema }>();
-</script>

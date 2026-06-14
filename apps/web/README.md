@@ -12,12 +12,12 @@ Vue 3 + Vite frontend for the tasks app. During development, API requests to `/a
 
 ## Scripts
 
-| Command | Description |
-| --- | --- |
-| `pnpm dev` | Start Vite dev server |
-| `pnpm build` | Build for production (outputs to `../api/public`) |
-| `pnpm lint` | Lint with ESLint |
-| `pnpm typecheck` | Type-check with `vue-tsc` |
+| Command          | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| `pnpm dev`       | Start Vite dev server                             |
+| `pnpm build`     | Build for production (outputs to `../api/public`) |
+| `pnpm lint`      | Lint with ESLint                                  |
+| `pnpm typecheck` | Type-check with `vue-tsc`                         |
 
 ## Development
 

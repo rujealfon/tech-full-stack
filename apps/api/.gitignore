@@ -13,6 +13,7 @@ node_modules/
 
 # env
 .env
+.env.test
 .env.production
 
 # logs
@@ -23,6 +24,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
+# compiled artifacts that may leak to project root on bad tsc runs
+drizzle.config.js
+vitest.config.js
 
 # misc
 .DS_Store

@@ -13,7 +13,7 @@ export const queryKeys = {
 export const tasksQueryOptions = queryOptions({
   ...queryKeys.LIST_TASKS,
   queryFn: async () => {
-    const response = await apiClient.api.tasks.$get();
+    const response = await apiClient.api.v1.tasks.$get();
     return response.json();
   },
 });
@@ -21,11 +21,8 @@ export const tasksQueryOptions = queryOptions({
 export const createTaskQueryOptions = (id: string) => queryOptions({
   ...queryKeys.LIST_TASK(id),
   queryFn: async () => {
-    const response = await apiClient.api.tasks[":id"].$get({
-      param: {
-        // @ts-expect-error allow strings for error messages
-        id,
-      },
+    const response = await apiClient.api.v1.tasks[":id"].$get({
+      param: { id },
     });
     const json = await response.json();
     if ("message" in json) {
@@ -41,7 +38,7 @@ export const createTaskQueryOptions = (id: string) => queryOptions({
 
 export const createTask = async (task: insertTasksSchema) => {
   await new Promise(resolve => setTimeout(resolve, 1000));
-  const response = await apiClient.api.tasks.$post({
+  const response = await apiClient.api.v1.tasks.$post({
     json: task,
   });
   const json = await response.json();
@@ -53,11 +50,8 @@ export const createTask = async (task: insertTasksSchema) => {
 };
 
 export const deleteTask = async (id: string) => {
-  const response = await apiClient.api.tasks[":id"].$delete({
-    param: {
-      // @ts-expect-error allow to show server error
-      id,
-    },
+  const response = await apiClient.api.v1.tasks[":id"].$delete({
+    param: { id },
   });
   if (response.status !== 204) {
     const json = await response.json();
@@ -70,11 +64,8 @@ export const deleteTask = async (id: string) => {
 };
 
 export const updateTask = async ({ id, task }: { id: string; task: patchTasksSchema }) => {
-  const response = await apiClient.api.tasks[":id"].$patch({
-    param: {
-      // @ts-expect-error allow to show server error
-      id,
-    },
+  const response = await apiClient.api.v1.tasks[":id"].$patch({
+    param: { id },
     json: task,
   });
   if (response.status !== 200) {
